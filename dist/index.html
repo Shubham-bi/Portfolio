@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shubham - Playwright Automation Expert & AI QA Engineer. Specializing in Playwright UI/API Testing, Generative AI, RAG Validation, and Agentic Workflow Verification.">
+    <title>Shubham | Playwright Automation Expert & AI QA Engineer</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <!-- Custom Cursor -->
+    <div id="custom-cursor-dot" class="cursor-dot"></div>
+    <div id="custom-cursor-ring" class="cursor-ring"></div>
+
+    <!-- Background Decorative Elements -->
+    <div class="blob-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="glass-header" id="main-header">
+        <div class="header-container">
+            <a href="#" class="logo-link" id="nav-logo">
+                <span class="gradient-text font-outfit font-bold logo-brand">Shubham.QA</span>
+            </a>
+            
+            <nav class="nav-menu" id="navigation-menu">
+                <ul>
+                    <li><a href="#hero" class="nav-link active" id="link-hero">Home</a></li>
+                    <li><a href="#about" class="nav-link" id="link-about">About</a></li>
+                    <li><a href="#skills" class="nav-link" id="link-skills">Skills</a></li>
+                    <li><a href="#ai-testing" class="nav-link" id="link-ai-testing">AI Validation</a></li>
+                    <li><a href="#projects" class="nav-link" id="link-projects">Projects</a></li>
+                    <li><a href="#frameworks" class="nav-link" id="link-frameworks">Frameworks</a></li>
+                    <li><a href="#qa-lab" class="nav-link" id="link-qa-lab">Testing Lab</a></li>
+                    <li><a href="#certifications" class="nav-link" id="link-certifications">Certifications</a></li>
+                    <li><a href="#contact" class="nav-link" id="link-contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle visual theme">
+                    <i data-lucide="sun" class="sun-icon"></i>
+                    <i data-lucide="moon" class="moon-icon"></i>
+                </button>
+                <button class="mobile-nav-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+                    <i data-lucide="menu" class="menu-icon"></i>
+                    <i data-lucide="x" class="close-icon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section section-padding">
+            <div class="container hero-grid">
+                <div class="hero-content reveal">
+                    <span class="hero-badge font-outfit">
+                        <span class="pulse-dot"></span> Playwright &amp; AI Testing Specialist
+                    </span>
+                    <h1 class="hero-title font-outfit">
+                        Building Resilient <br>
+                        <span class="gradient-text dynamic-type" id="typed-text">Playwright Automation</span>
+                    </h1>
+                    <p class="hero-description font-jakarta">
+                        I specialize in Playwright UI/API E2E test suites, Generative AI &amp; RAG validations, and robust database integrity verification for complex software platforms.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary" id="hero-btn-portfolio">
+                            <span>Explore Projects</span>
+                            <i data-lucide="arrow-up-right"></i>
+                        </a>
+                        <a href="#qa-lab" class="btn btn-secondary" id="hero-btn-lab">
+                            <span>Browse Testing Lab</span>
+                        </a>
+                    </div>
+                    <div class="hero-socials">
+                        <a href="https://github.com/your-profile" target="_blank" rel="noopener" class="social-icon" id="hero-github" aria-label="Github Profile">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener" class="social-icon" id="hero-linkedin" aria-label="LinkedIn Profile">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-icon" id="hero-email" aria-label="Send Email">
+                            <i data-lucide="mail"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-wrapper reveal delay-2">
+                    <div class="glass-avatar-container">
+                        <img src="assets/qa_avatar.png" alt="Shubham QA Portrait" class="avatar-img" id="hero-avatar">
+                        <div class="floating-tech-card tech-card-1">
+                            <i data-lucide="terminal" class="neon-emerald"></i>
+                            <div>
+                                <span class="card-title font-outfit">Playwright</span>
+                                <span class="card-desc font-jakarta">UI &amp; API E2E Rig</span>
+                            </div>
+                        </div>
+                        <div class="floating-tech-card tech-card-2">
+                            <i data-lucide="brain-circuit" class="neon-cyan"></i>
+                            <div>
+                                <span class="card-title font-outfit">AI Verification</span>
+                                <span class="card-desc font-jakarta">RAG &amp; Multi-Agent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down-indicator">
+                <a href="#about" aria-label="Scroll down to About section">
+                    <span class="mouse-icon">
+                        <span class="mouse-wheel"></span>
+                    </span>
+                    <span class="scroll-text font-outfit">Scroll Down</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">About Me</span>
+                    <h2 class="section-title font-outfit">QA Engineer Specializing in Automation &amp; AI Systems</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="about-bio reveal">
+                        <p class="font-jakarta bio-text-highlight">
+                            Quality is not only about finding defects. It is about validating business requirements, protecting user trust, ensuring data integrity, and verifying that both traditional software and AI systems behave reliably.
+                        </p>
+                        <p class="font-jakarta">
+                            I am a Software Quality Assurance Engineer with 4+ years of experience specializing in **Playwright &amp; TypeScript automation**, Generative AI/RAG validation, and database integrity testing. I construct robust CI/CD regression suites and design comprehensive manual functional specifications for complex platforms.
+                        </p>
+                        <p class="font-jakarta">
+                            My core expertise lies in developing maintainable **Page Object Model (POM) frameworks** in Playwright and Selenium. Recently, I have focused on **AI Quality Assurance**—triaging vector databases, checking document retrieval accuracy, auditing prompt parameters, and validating tool-calling routes in agentic workflows.
+                        </p>
+                        
+                        <div class="stats-row font-outfit">
+                            <div class="stat-box">
+                                <span class="stat-number gradient-text" id="stat-years">4+</span>
+                                <span class="stat-label">Years QA Experience</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number gradient-text" id="stat-projects">50+</span>
+                                <span class="stat-label">Test Suites Run</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number gradient-text" id="stat-coverage">100%</span>
+                                <span class="stat-label">Target Coverage</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-skills reveal delay-2">
+                        <div class="skills-sidebar glass-card">
+                            <h3 class="skills-title font-outfit">Currently Learning</h3>
+                            <ul class="learning-list font-jakarta text-secondary">
+                                <li><i data-lucide="chevron-right"></i> Advanced Playwright Orchestration</li>
+                                <li><i data-lucide="chevron-right"></i> AI Testing &amp; Observability Frameworks</li>
+                                <li><i data-lucide="chevron-right"></i> RAG Evaluation Metrics (Ragas, TruLens)</li>
+                                <li><i data-lucide="chevron-right"></i> Agent Routing &amp; Memory Validation</li>
+                                <li><i data-lucide="chevron-right"></i> Model Context Protocol (MCP)</li>
+                                <li><i data-lucide="chevron-right"></i> Multi-Agent Orchestration with LangGraph</li>
+                            </ul>
+                            <div class="resume-download-box">
+                                <a href="#" class="btn btn-primary btn-full" id="btn-download-resume">
+                                    <i data-lucide="file-down"></i>
+                                    <span>Download Resume (PDF)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Competencies Section -->
+        <section id="skills" class="skills-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Skill Matrix</span>
+                    <h2 class="section-title font-outfit">Core Competencies</h2>
+                </div>
+
+                <!-- Skills Category Tabs (Prioritized) -->
+                <div class="skills-tabs reveal">
+                    <button class="skill-tab-btn active font-outfit" data-tab="automation" id="tab-automation">Playwright &amp; Automation</button>
+                    <button class="skill-tab-btn font-outfit" data-tab="ai-gen" id="tab-ai-gen">AI &amp; GenAI Testing</button>
+                    <button class="skill-tab-btn font-outfit" data-tab="api-db" id="tab-api-db">API &amp; Database</button>
+                    <button class="skill-tab-btn font-outfit" data-tab="manual" id="tab-manual">Manual &amp; Functional QA</button>
+                </div>
+
+                <!-- Tab Contents -->
+                <div class="skills-content-container reveal delay-1">
+                    <!-- Tab: Automation (First Priority) -->
+                    <div class="skills-tab-pane active" id="pane-automation">
+                        <div class="skills-grid-layout">
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="play" class="neon-emerald"></i>
+                                    <span class="font-outfit">Playwright (TS)</span>
+                                </div>
+                                <p class="font-jakarta">Automating fast UI regressions, API chains, cross-browser scenarios, and custom HTML reports.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="cpu" class="neon-emerald"></i>
+                                    <span class="font-outfit">Selenium WebDriver</span>
+                                </div>
+                                <p class="font-jakarta">Building Java Page Object Models, TestNG execution rigs, and Maven XML configs.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="git-merge" class="neon-emerald"></i>
+                                    <span class="font-outfit">Git &amp; CI/CD</span>
+                                </div>
+                                <p class="font-jakarta">Managing code reviews in GitHub and configuring automated test runners in Jenkins pipelines.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: AI Gen (Second Priority) -->
+                    <div class="skills-tab-pane" id="pane-ai-gen">
+                        <div class="skills-grid-layout">
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="sparkles" class="neon-cyan"></i>
+                                    <span class="font-outfit">Prompt Engineering</span>
+                                </div>
+                                <p class="font-jakarta">Designing adversarial system messages to test model jailbreaks and validate prompt constraints.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="server-crash" class="neon-cyan"></i>
+                                    <span class="font-outfit">Hallucination Audits</span>
+                                </div>
+                                <p class="font-jakarta">Evaluating LLM responses for groundedness, accuracy, and logic inconsistencies.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="network" class="neon-cyan"></i>
+                                    <span class="font-outfit">RAG Verification</span>
+                                </div>
+                                <p class="font-jakarta">Verifying document chunks, embeddings, retrieval precision, and source citation accuracy.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="activity" class="neon-cyan"></i>
+                                    <span class="font-outfit">Agentic AI Testing</span>
+                                </div>
+                                <p class="font-jakarta">Verifying autonomous tool execution, sub-agent communications, short-term memory, and retry loops.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: API & DB (Third Priority) -->
+                    <div class="skills-tab-pane" id="pane-api-db">
+                        <div class="skills-grid-layout">
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="radio" class="neon-cyan"></i>
+                                    <span class="font-outfit">REST API Validation</span>
+                                </div>
+                                <p class="font-jakarta">Asserting HTTP codes, JSON structures, body fields, and header validations via Postman.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="shield-check" class="neon-cyan"></i>
+                                    <span class="font-outfit">Auth &amp; Security Checks</span>
+                                </div>
+                                <p class="font-jakarta">Validating Bearer tokens, OAuth sequences, and error codes for unauthorized requests.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="database" class="neon-cyan"></i>
+                                    <span class="font-outfit">Database Integrity</span>
+                                </div>
+                                <p class="font-jakarta">Writing SQL checks on MySQL, PostgreSQL, and MS SQL Server to verify backend CRUD consistency.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Manual (Fourth Priority) -->
+                    <div class="skills-tab-pane" id="pane-manual">
+                        <div class="skills-grid-layout">
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="search" class="neon-cyan"></i>
+                                    <span class="font-outfit">Functional Testing</span>
+                                </div>
+                                <p class="font-jakarta">Validating UI elements, logic flows, and user journeys against product specs.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="refresh-cw" class="neon-cyan"></i>
+                                    <span class="font-outfit">Regression Testing</span>
+                                </div>
+                                <p class="font-jakarta">Ensuring new commits do not break existing modules or database behaviors.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="flame" class="neon-cyan"></i>
+                                    <span class="font-outfit">Smoke &amp; Sanity</span>
+                                </div>
+                                <p class="font-jakarta">Running baseline checks on build releases to ensure environmental stability.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="shuffle" class="neon-cyan"></i>
+                                    <span class="font-outfit">Integration &amp; System</span>
+                                </div>
+                                <p class="font-jakarta">Testing end-to-end data pipelines connecting APIs, queues, and DB records.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="users" class="neon-cyan"></i>
+                                    <span class="font-outfit">UAT &amp; Exploratory</span>
+                                </div>
+                                <p class="font-jakarta">Mimicking realistic customer workloads and edge-cases without scripted boundaries.</p>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-item-header">
+                                    <i data-lucide="bug" class="neon-cyan"></i>
+                                    <span class="font-outfit">Defect Management</span>
+                                </div>
+                                <p class="font-jakarta">Triaging defects, compiling step-to-reproduce logs, and reporting via Jira.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Testing Deep Dive Section -->
+        <section id="ai-testing" class="ai-testing-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Specialized Validation</span>
+                    <h2 class="section-title font-outfit">AI &amp; RAG Quality Engineering</h2>
+                </div>
+                <div class="about-grid">
+                    <div class="reveal">
+                        <div class="workflow-card glass-card">
+                            <h3 class="font-outfit workflow-title"><i data-lucide="network" class="neon-emerald"></i> RAG Pipeline Validation</h3>
+                            <p class="font-jakarta text-secondary workflow-desc">
+                                We validate each step of the retrieval-augmented generation workflow to ensure answers remain grounded and contextually accurate:
+                            </p>
+                            <div class="workflow-steps font-jakarta">
+                                <div class="step-line"><span class="step-num">1</span> <span><strong>Document Chunks:</strong> Verify token lengths and embedding overlap parameters.</span></div>
+                                <div class="step-line"><span class="step-num">2</span> <span><strong>Vector Database:</strong> Audit indexing efficiency in ChromaDB, Pinecone, or FAISS.</span></div>
+                                <div class="step-line"><span class="step-num">3</span> <span><strong>Retrieval Accuracy:</strong> Check top-k results for relevance, density, and duplication.</span></div>
+                                <div class="step-line"><span class="step-num">4</span> <span><strong>LLM Grounding:</strong> Run verification checks to identify and block hallucinations.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal delay-2">
+                        <div class="workflow-card glass-card">
+                            <h3 class="font-outfit workflow-title"><i data-lucide="cpu" class="neon-cyan"></i> Agentic Workflow Testing</h3>
+                            <p class="font-jakarta text-secondary workflow-desc">
+                                Testing autonomous agents running on CrewAI or LangGraph requires verifying decision logic and external system connectivity:
+                            </p>
+                            <div class="workflow-steps font-jakarta">
+                                <div class="step-line"><span class="step-num">A</span> <span><strong>Tool Invocation:</strong> Verify the agent selects correct tools for given payloads.</span></div>
+                                <div class="step-line"><span class="step-num">B</span> <span><strong>Agent Routing:</strong> Assert transition conditions in multi-agent routing graphs.</span></div>
+                                <div class="step-line"><span class="step-num">C</span> <span><strong>Memory Retention:</strong> Validate context updates across multi-turn sessions.</span></div>
+                                <div class="step-line"><span class="step-num">D</span> <span><strong>Exception Paths:</strong> Audit recovery behaviors when tool calls fail or timeout.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section (Prioritized: AI & Automation First) -->
+        <section id="projects" class="projects-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Works</span>
+                    <h2 class="section-title font-outfit">Featured Projects</h2>
+                </div>
+
+                <!-- Projects Filter -->
+                <div class="projects-filter reveal">
+                    <button class="filter-btn active font-outfit" data-filter="all" id="filter-all">All Work</button>
+                    <button class="filter-btn font-outfit" data-filter="ai" id="filter-ai">AI Validation</button>
+                    <button class="filter-btn font-outfit" data-filter="traditional" id="filter-traditional">Automation &amp; API</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid" id="portfolio-grid">
+                    <!-- Project 1 (AI / E2E Automation) -->
+                    <article class="project-card reveal" data-category="ai">
+                        <div class="project-image-container">
+                            <img src="assets/project3.png" alt="AI Chatbot Testing visualizer" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <span class="project-badge font-outfit">Playwright / TS / LLMs</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <span class="project-category font-outfit text-gradient">LLM &amp; E2E Automation</span>
+                            <h3 class="project-title font-outfit">AI Chatbot Testing &amp; Playwright Automation Rig</h3>
+                            <p class="project-description font-jakarta">
+                                Built an automated Playwright testing framework to audit LLM chatbot UI interactions. Verified prompt compliance, multi-turn context retention, and flagged hallucinations.
+                            </p>
+                            <div class="project-tech-tags font-jakarta">
+                                <span>Playwright</span>
+                                <span>Hallucinations</span>
+                                <span>Prompt Audits</span>
+                                <span>Context Retention</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 (AI / Vector DB) -->
+                    <article class="project-card reveal" data-category="ai">
+                        <div class="project-details" style="padding-top: 30px;">
+                            <span class="project-category font-outfit text-gradient">RAG Auditing</span>
+                            <h3 class="project-title font-outfit">RAG Pipeline Validation Framework</h3>
+                            <p class="project-description font-jakarta">
+                                Designed automated assertion pipelines validating the data cycle: Document ingestion → Embedding generation → Vector Search (ChromaDB) → Contextual Retrieval → Response Groundedness.
+                            </p>
+                            <div class="project-tech-tags font-jakarta" style="margin-bottom: 20px;">
+                                <span>Vector DB</span>
+                                <span>Retrieval Rate</span>
+                                <span>Citations</span>
+                                <span>ChromaDB</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 (AI / Multi-Agent) -->
+                    <article class="project-card reveal" data-category="ai">
+                        <div class="project-details" style="padding-top: 30px;">
+                            <span class="project-category font-outfit text-gradient">Agent Validation</span>
+                            <h3 class="project-title font-outfit">Agentic AI Workflow Testing</h3>
+                            <p class="project-description font-jakarta">
+                                Created robust validation workflows for CrewAI and LangGraph multi-agent setups. Verified correct tool calling parameters, agent transitions, and exception recovery loops.
+                            </p>
+                            <div class="project-tech-tags font-jakarta" style="margin-bottom: 20px;">
+                                <span>Tool Calls</span>
+                                <span>Routing Graph</span>
+                                <span>Exceptions</span>
+                                <span>LangGraph</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 (Traditional / Playwright) -->
+                    <article class="project-card reveal" data-category="traditional">
+                        <div class="project-image-container">
+                            <img src="assets/project1.png" alt="ERP Inventory Dashboard" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <span class="project-badge font-outfit">Playwright / Postman / SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <span class="project-category font-outfit text-gradient">Automation &amp; API</span>
+                            <h3 class="project-title font-outfit">ERP &amp; Inventory Management System</h3>
+                            <p class="project-description font-jakarta">
+                                Conducted functional testing and built Playwright regression scripts automating warehouse stock transfers and order workflows. Audited databases for inventory consistency.
+                            </p>
+                            <div class="project-tech-tags font-jakarta">
+                                <span>Playwright</span>
+                                <span>API Testing</span>
+                                <span>DB Verification</span>
+                                <span>Jira</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 5 (Traditional / Playwright API) -->
+                    <article class="project-card reveal" data-category="traditional">
+                        <div class="project-image-container">
+                            <img src="assets/project2.png" alt="Fleet Tracker Dashboard" class="project-img">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <span class="project-badge font-outfit">Playwright API / SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <span class="project-category font-outfit text-gradient">Integration &amp; API Automation</span>
+                            <h3 class="project-title font-outfit">Fleet Management &amp; Tracking System</h3>
+                            <p class="project-description font-jakarta">
+                                Verified geolocation streaming and geofence alerts. Created Playwright integration tests leveraging native `APIRequest` contexts to validate real-time database transactions.
+                            </p>
+                            <div class="project-tech-tags font-jakarta">
+                                <span>Playwright API</span>
+                                <span>Geofencing</span>
+                                <span>PostgreSQL</span>
+                                <span>Alert Logs</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Automation Frameworks Section -->
+        <section id="frameworks" class="frameworks-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Framework Architecture</span>
+                    <h2 class="section-title font-outfit">Automation Structure</h2>
+                </div>
+                <div class="framework-container glass-card reveal">
+                    <div class="framework-grid">
+                        <div class="framework-info">
+                            <h3 class="font-outfit"><i data-lucide="play" class="neon-emerald"></i> Playwright Page Object Model</h3>
+                            <p class="font-jakarta text-secondary">
+                                I construct highly resilient UI and API automated test setups in TypeScript. By isolating page locators from specs, the code stays maintainable across layout shifts:
+                            </p>
+                            <div class="architecture-features font-jakarta">
+                                <div class="feature-item"><i data-lucide="check" class="neon-emerald"></i> <span><strong>Configuration:</strong> Multi-browser configurations (Chromium, Firefox, WebKit) and environment flags.</span></div>
+                                <div class="feature-item"><i data-lucide="check" class="neon-emerald"></i> <span><strong>Fixture Isolation:</strong> Custom page fixtures managing auth login state cookies.</span></div>
+                                <div class="feature-item"><i data-lucide="check" class="neon-emerald"></i> <span><strong>Reports:</strong> HTML reporting integrated directly into GitHub Actions pipelines.</span></div>
+                            </div>
+                        </div>
+                        <div class="framework-code">
+                            <div class="code-header font-outfit">
+                                <span class="dot-btn red"></span>
+                                <span class="dot-btn yellow"></span>
+                                <span class="dot-btn green"></span>
+                                <span class="code-title">auth-validation.spec.ts</span>
+                            </div>
+                            <pre class="code-block font-jakarta"><code>import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
+import { DashboardPage } from '../pages/DashboardPage';
+
+test.describe('ERP Authentication Tests', () => {
+  test('Success login sets session state', async ({ page }) => {
+    const login = new LoginPage(page);
+    const dashboard = new DashboardPage(page);
+
+    await login.navigate();
+    await login.performLogin('qa_user', 'secure_pass');
+    
+    await expect(page).toHaveURL(/.*\/dashboard/);
+    await expect(dashboard.sidebarLogo).toBeVisible();
+  });
+});</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Testing Lab (Interactive Tabs & Accordions) -->
+        <section id="qa-lab" class="qa-lab-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Interactive Demos</span>
+                    <h2 class="section-title font-outfit">AI Testing Lab</h2>
+                </div>
+
+                <!-- Lab Tabs -->
+                <div class="lab-tabs-nav reveal">
+                    <button class="lab-tab-btn active font-outfit" data-lab-tab="bugs" id="lab-tab-bugs"><i data-lucide="bug"></i> Sample AI Bug Reports</button>
+                    <button class="lab-tab-btn font-outfit" data-lab-tab="cases" id="lab-tab-cases"><i data-lucide="clipboard-list"></i> Sample AI Test Cases</button>
+                </div>
+
+                <div class="lab-content reveal delay-1">
+                    <!-- Tab Content: Bugs -->
+                    <div class="lab-pane active" id="lab-pane-bugs">
+                        <div class="bug-reports-list">
+                            <!-- Bug 1 -->
+                            <div class="bug-card glass-card">
+                                <div class="bug-card-header">
+                                    <span class="bug-id font-outfit">AI001</span>
+                                    <h4 class="bug-title font-outfit">Hallucinated Product Information</h4>
+                                    <span class="bug-status status-fail">FAILED</span>
+                                </div>
+                                <div class="bug-card-body font-jakarta">
+                                    <p class="bug-summary">Generated response contains inventory values not present in retrieved knowledge base document chunks.</p>
+                                    <div class="bug-detail-row">
+                                        <strong>Expected:</strong> "Stock levels for SKU-402: 12 units available."<br>
+                                        <strong>Actual:</strong> "We currently have 125 units of SKU-402 in storage." (Hallucination)
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bug 2 -->
+                            <div class="bug-card glass-card">
+                                <div class="bug-card-header">
+                                    <span class="bug-id font-outfit">AI002</span>
+                                    <h4 class="bug-title font-outfit">Incorrect Source Citation</h4>
+                                    <span class="bug-status status-fail">FAILED</span>
+                                </div>
+                                <div class="bug-card-body font-jakarta">
+                                    <p class="bug-summary">LLM cited `transit_policy_v2.pdf` instead of the correct `warehouse_procedures_v1.pdf` for cross-dock rules.</p>
+                                    <div class="bug-detail-row">
+                                        <strong>Expected:</strong> Citation references `warehouse_procedures_v1.pdf#page=4`<br>
+                                        <strong>Actual:</strong> Citation lists `transit_policy_v2.pdf`
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bug 3 -->
+                            <div class="bug-card glass-card">
+                                <div class="bug-card-header">
+                                    <span class="bug-id font-outfit">AI003</span>
+                                    <h4 class="bug-title font-outfit">Context Loss in Multi-Turn</h4>
+                                    <span class="bug-status status-fail">FAILED</span>
+                                </div>
+                                <div class="bug-card-body font-jakarta">
+                                    <p class="bug-summary">Agent fails to recall user's selected warehouse location after three conversation exchanges.</p>
+                                    <div class="bug-detail-row">
+                                        <strong>User:</strong> "Now update its transfer status."<br>
+                                        <strong>Actual Agent:</strong> "Which item or warehouse location are you referring to?"
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bug 4 -->
+                            <div class="bug-card glass-card">
+                                <div class="bug-card-header">
+                                    <span class="bug-id font-outfit">AI004</span>
+                                    <h4 class="bug-title font-outfit">Incorrect Tool Invocation</h4>
+                                    <span class="bug-status status-fail">FAILED</span>
+                                </div>
+                                <div class="bug-card-body font-jakarta">
+                                    <p class="bug-summary">Router graph invokes the DB writing tool instead of the read-only fetch tool during a stock check query.</p>
+                                    <div class="bug-detail-row">
+                                        <strong>Expected Tool:</strong> `query_database`<br>
+                                        <strong>Actual Tool Called:</strong> `update_inventory_db` (Side effect triggered)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content: Test Cases -->
+                    <div class="lab-pane" id="lab-pane-cases">
+                        <div class="test-cases-list">
+                            <!-- TC 1 -->
+                            <div class="test-case-card glass-card">
+                                <div class="tc-header">
+                                    <span class="tc-id font-outfit">AI-TC-001</span>
+                                    <h4 class="tc-title font-outfit">Validate Response Source Grounding</h4>
+                                    <span class="tc-status status-pass"><i data-lucide="check-circle-2"></i> PASS</span>
+                                </div>
+                                <div class="tc-body font-jakarta">
+                                    <div class="tc-row"><strong>Scenario:</strong> Submit user query demanding facts on stock transfers from uploaded PDF.</div>
+                                    <div class="tc-row"><strong>Expected Result:</strong> Response generated solely from doc context with strict reference markers. No external training knowledge used.</div>
+                                </div>
+                            </div>
+                            <!-- TC 2 -->
+                            <div class="test-case-card glass-card">
+                                <div class="tc-header">
+                                    <span class="tc-id font-outfit">AI-TC-002</span>
+                                    <h4 class="tc-title font-outfit">Out-of-Scope Graceful Failure</h4>
+                                    <span class="tc-status status-pass"><i data-lucide="check-circle-2"></i> PASS</span>
+                                </div>
+                                <div class="tc-body font-jakarta">
+                                    <div class="tc-row"><strong>Scenario:</strong> Ask system a query outside the uploaded knowledge base context.</div>
+                                    <div class="tc-row"><strong>Expected Result:</strong> System fails gracefully, stating: "I am unable to answer based on the uploaded data." No hallucinations.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section (Prioritized) -->
+        <section id="certifications" class="certifications-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Credentials</span>
+                    <h2 class="section-title font-outfit">Certifications</h2>
+                </div>
+                <div class="certifications-grid">
+                    <!-- Cert 1 (Playwright - First) -->
+                    <div class="cert-card glass-card reveal">
+                        <div class="cert-icon-wrapper">
+                            <i data-lucide="code" class="neon-emerald"></i>
+                        </div>
+                        <h4 class="cert-title font-outfit">Playwright Automation</h4>
+                        <p class="cert-org font-jakarta text-secondary">Advanced UI &amp; API E2E Automation</p>
+                    </div>
+                    <!-- Cert 2 (AI Fundamentals) -->
+                    <div class="cert-card glass-card reveal delay-1">
+                        <div class="cert-icon-wrapper">
+                            <i data-lucide="brain-circuit" class="neon-cyan"></i>
+                        </div>
+                        <h4 class="cert-title font-outfit">GenAI Fundamentals</h4>
+                        <p class="cert-org font-jakarta text-secondary">LLMs, Embeddings, &amp; RAG Structures</p>
+                    </div>
+                    <!-- Cert 3 (Prompt Engineering) -->
+                    <div class="cert-card glass-card reveal delay-2">
+                        <div class="cert-icon-wrapper">
+                            <i data-lucide="sparkles" class="neon-emerald"></i>
+                        </div>
+                        <h4 class="cert-title font-outfit">Prompt Engineering</h4>
+                        <p class="cert-org font-jakarta text-secondary">Adversarial Audits &amp; Prompt Tuning</p>
+                    </div>
+                    <!-- Cert 4 (ISTQB) -->
+                    <div class="cert-card glass-card reveal">
+                        <div class="cert-icon-wrapper">
+                            <i data-lucide="award" class="neon-cyan"></i>
+                        </div>
+                        <h4 class="cert-title font-outfit">ISTQB CTFL</h4>
+                        <p class="cert-org font-jakarta text-secondary">Certified Tester Foundation Level</p>
+                    </div>
+                    <!-- Cert 5 (Postman) -->
+                    <div class="cert-card glass-card reveal delay-1">
+                        <div class="cert-icon-wrapper">
+                            <i data-lucide="radio" class="neon-emerald"></i>
+                        </div>
+                        <h4 class="cert-title font-outfit">API Testing with Postman</h4>
+                        <p class="cert-org font-jakarta text-secondary">REST APIs &amp; Assertions</p>
+                    </div>
+                    <!-- Cert 6 (SQL) -->
+                    <div class="cert-card glass-card reveal delay-2">
+                        <div class="cert-icon-wrapper">
+                            <i data-lucide="database" class="neon-cyan"></i>
+                        </div>
+                        <h4 class="cert-title font-outfit">SQL for Testers</h4>
+                        <p class="cert-org font-jakarta text-secondary">Data Validation &amp; CRUD Audits</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-subtitle font-outfit">Get In Touch</span>
+                    <h2 class="section-title font-outfit">Connect For Quality Assurance</h2>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info reveal">
+                        <h3 class="info-title font-outfit">Contact Details</h3>
+                        <p class="info-desc font-jakarta text-secondary">
+                            Seeking manual testing strategies, Playwright test coverage, or evaluations of Generative AI/RAG structures? Drop me a message.
+                        </p>
+                        <div class="info-details-list">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i data-lucide="mail"></i>
+                                </div>
+                                <div class="info-text font-jakarta">
+                                    <span class="label">Email</span>
+                                    <a href="mailto:your.email@example.com">your.email@example.com</a>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                                <div class="info-text font-jakarta">
+                                    <span class="label">Location</span>
+                                    <span>Maharashtra, India</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-socials-group">
+                            <span class="follow-text font-outfit">Professional Networks</span>
+                            <div class="social-links-row">
+                                <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+                                <a href="https://github.com/your-profile" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-container glass-card reveal delay-2">
+                        <form id="portfolio-contact-form" class="contact-form" novalidate>
+                            <div class="form-group">
+                                <input type="text" id="contact-name" name="name" required placeholder=" " class="form-input">
+                                <label for="contact-name" class="form-label font-jakarta">Full Name</label>
+                                <span class="error-msg" id="name-error">Please enter your name</span>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="contact-email" name="email" required placeholder=" " class="form-input">
+                                <label for="contact-email" class="form-label font-jakarta">Email Address</label>
+                                <span class="error-msg" id="email-error">Please enter a valid email</span>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contact-message" name="message" required placeholder=" " class="form-input form-textarea"></textarea>
+                                <label for="contact-message" class="form-label font-jakarta">Your Message</label>
+                                <span class="error-msg" id="message-error">Please enter your message</span>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full" id="contact-submit-btn">
+                                <span>Send Message</span>
+                                <i data-lucide="send"></i>
+                            </button>
+                        </form>
+                        <!-- Form Success Screen -->
+                        <div class="form-success-screen" id="contact-success-screen">
+                            <div class="success-icon-wrapper">
+                                <i data-lucide="check-circle" class="success-check-icon"></i>
+                            </div>
+                            <h3 class="success-title font-outfit">Message Sent!</h3>
+                            <p class="success-desc font-jakarta">
+                                Thank you for reaching out. Shubham will get back to you as soon as possible.
+                            </p>
+                            <button class="btn btn-secondary btn-sm" id="success-reset-btn">Send Another Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <p class="copyright-text font-jakarta">
+                &copy; 2026 Shubham. QA Portfolio built with modern glassmorphism.
+            </p>
+            <a href="#" class="back-to-top font-outfit" id="btn-back-to-top" aria-label="Scroll back to top">
+                <span>Back to Top</span>
+                <i data-lucide="arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

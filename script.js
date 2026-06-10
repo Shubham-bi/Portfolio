@@ -1,0 +1,437 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // -------------------------------------------------------------
+    // INITIALIZE LUCIDE ICONS
+    // -------------------------------------------------------------
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+
+    // -------------------------------------------------------------
+    // CUSTOM CURSOR
+    // -------------------------------------------------------------
+    const cursorDot = document.getElementById('custom-cursor-dot');
+    const cursorRing = document.getElementById('custom-cursor-ring');
+    
+    let mouseX = -100;
+    let mouseY = -100;
+    let ringX = -100;
+    let ringY = -100;
+    
+    const hasHover = window.matchMedia('(hover: hover)').matches;
+
+    if (hasHover && cursorDot && cursorRing) {
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        const animateRing = () => {
+            const lerpFactor = 0.15;
+            
+            ringX += (mouseX - ringX) * lerpFactor;
+            ringY += (mouseY - ringY) * lerpFactor;
+            
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
+            
+            requestAnimationFrame(animateRing);
+        };
+        animateRing();
+
+        const interactiveSelectors = 'a, button, input, textarea, .skill-tab-btn, .filter-btn, .lab-tab-btn, .bug-card, .project-card';
+        const addHoverClass = () => document.body.classList.add('cursor-hover');
+        const removeHoverClass = () => document.body.classList.remove('cursor-hover');
+
+        const updateInteractiveListeners = () => {
+            const elements = document.querySelectorAll(interactiveSelectors);
+            elements.forEach(el => {
+                el.removeEventListener('mouseenter', addHoverClass);
+                el.removeEventListener('mouseleave', removeHoverClass);
+                el.addEventListener('mouseenter', addHoverClass);
+                el.addEventListener('mouseleave', removeHoverClass);
+            });
+        };
+        
+        updateInteractiveListeners();
+        document.addEventListener('click', () => setTimeout(updateInteractiveListeners, 200));
+
+        document.addEventListener('mouseleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorRing.style.opacity = '0';
+        });
+        
+        document.addEventListener('mouseenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorRing.style.opacity = '1';
+        });
+    }
+
+    // -------------------------------------------------------------
+    // TYPING ANIMATION (HERO)
+    // -------------------------------------------------------------
+    const typedTextEl = document.getElementById('typed-text');
+    if (typedTextEl) {
+        const phrases = [
+            'Playwright Automation',
+            'RAG & Agentic AI Testing',
+            'API & Database Verification',
+            'Quality Assurance'
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+        
+        const typeEffect = () => {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingSpeed = 50;
+                typedTextEl.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingSpeed = 100;
+                typedTextEl.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typingSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500;
+            }
+            
+            setTimeout(typeEffect, typingSpeed);
+        };
+        
+        setTimeout(typeEffect, 1000);
+    }
+
+    // -------------------------------------------------------------
+    // SCROLL-ACTIVE HEADER & SCROLL-SPY NAVIGATION
+    // -------------------------------------------------------------
+    const header = document.getElementById('main-header');
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const handleScroll = () => {
+        const scrollPos = window.scrollY;
+
+        if (scrollPos > 20) {
+            header.classList.add('scroll-active');
+        } else {
+            header.classList.remove('scroll-active');
+        }
+
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 150;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        if (currentSectionId) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    // -------------------------------------------------------------
+    // MOBILE NAVIGATION
+    // -------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', () => {
+            document.body.classList.toggle('mobile-nav-active');
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            document.body.classList.remove('mobile-nav-active');
+        });
+    });
+
+    // -------------------------------------------------------------
+    // REVEAL ON SCROLL ANIMATIONS (INTERSECTION OBSERVER)
+    // -------------------------------------------------------------
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // -------------------------------------------------------------
+    // STATS COUNT-UP ANIMATION
+    // -------------------------------------------------------------
+    const statBoxes = document.querySelectorAll('.stat-box');
+    let animatedStats = false;
+
+    const animateStats = () => {
+        statBoxes.forEach(box => {
+            const numEl = box.querySelector('.stat-number');
+            const targetVal = parseInt(numEl.id === 'stat-years' ? '4' : (numEl.id === 'stat-projects' ? '50' : '100'));
+            let currentVal = 0;
+            const duration = 1500;
+            const steps = 40;
+            const increment = targetVal / steps;
+            const stepTime = duration / steps;
+            
+            const timer = setInterval(() => {
+                currentVal += increment;
+                if (currentVal >= targetVal) {
+                    currentVal = targetVal;
+                    clearInterval(timer);
+                }
+                
+                if (numEl.id === 'stat-coverage') {
+                    numEl.textContent = Math.floor(currentVal) + '%';
+                } else {
+                    numEl.textContent = Math.floor(currentVal) + '+';
+                }
+            }, stepTime);
+        });
+    };
+
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animatedStats) {
+                animatedStats = true;
+                animateStats();
+            }
+        }, { threshold: 0.2 });
+        statsObserver.observe(aboutSection);
+    }
+
+    // -------------------------------------------------------------
+    // SKILLS SECTION CATEGORY TABS
+    // -------------------------------------------------------------
+    const skillTabs = document.querySelectorAll('.skill-tab-btn');
+    const skillPanes = document.querySelectorAll('.skills-tab-pane');
+
+    skillTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active classes
+            skillTabs.forEach(t => t.classList.remove('active'));
+            skillPanes.forEach(p => p.classList.remove('active'));
+
+            tab.classList.add('active');
+            
+            const selectedTabId = tab.getAttribute('data-tab');
+            const targetPane = document.getElementById(`pane-${selectedTabId}`);
+            
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+        });
+    });
+
+    // -------------------------------------------------------------
+    // PROJECT FILTERING
+    // -------------------------------------------------------------
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+                const categories = card.getAttribute('data-category').split(' ');
+                
+                card.style.transform = 'scale(0.95)';
+                card.style.opacity = '0';
+                
+                setTimeout(() => {
+                    if (filterValue === 'all' || categories.includes(filterValue)) {
+                        card.style.display = 'block';
+                        card.offsetHeight; 
+                        card.style.transform = 'scale(1)';
+                        card.style.opacity = '1';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }, 300);
+            });
+        });
+    });
+
+    // -------------------------------------------------------------
+    // AI TESTING LAB WIDGET TABS
+    // -------------------------------------------------------------
+    const labTabs = document.querySelectorAll('.lab-tab-btn');
+    const labPanes = document.querySelectorAll('.lab-pane');
+
+    labTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            labTabs.forEach(t => t.classList.remove('active'));
+            labPanes.forEach(p => p.classList.remove('active'));
+
+            tab.classList.add('active');
+            
+            const selectedPaneId = tab.getAttribute('data-lab-tab');
+            const targetPane = document.getElementById(`lab-pane-${selectedPaneId}`);
+            
+            if (targetPane) {
+                targetPane.classList.add('active');
+            }
+        });
+    });
+
+    // -------------------------------------------------------------
+    // EXPANDABLE BUG CARDS ACCORDION
+    // -------------------------------------------------------------
+    const bugCards = document.querySelectorAll('.bug-card');
+
+    bugCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Close other bug cards
+            bugCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('expanded');
+                }
+            });
+
+            // Toggle current card
+            card.classList.toggle('expanded');
+        });
+    });
+
+    // -------------------------------------------------------------
+    // THEME TOGGLE (DARK / LIGHT MODE)
+    // -------------------------------------------------------------
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+
+    if (savedTheme === 'light') {
+        document.body.classList.remove('dark-theme');
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+        document.body.classList.add('dark-theme');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.body.classList.contains('dark-theme')) {
+                document.body.classList.remove('dark-theme');
+                document.body.classList.add('light-theme');
+                localStorage.setItem('portfolio-theme', 'light');
+            } else {
+                document.body.classList.remove('light-theme');
+                document.body.classList.add('dark-theme');
+                localStorage.setItem('portfolio-theme', 'dark');
+            }
+        });
+    }
+
+    // -------------------------------------------------------------
+    // CONTACT FORM VALIDATION & FICTITIOUS STATE HANDLING
+    // -------------------------------------------------------------
+    const contactForm = document.getElementById('portfolio-contact-form');
+    const successScreen = document.getElementById('contact-success-screen');
+    const resetFormBtn = document.getElementById('success-reset-btn');
+    const submitBtn = document.getElementById('contact-submit-btn');
+
+    const inputs = contactForm ? contactForm.querySelectorAll('.form-input') : [];
+
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            const formGroup = input.parentElement;
+            formGroup.classList.remove('has-error');
+        });
+    });
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            let hasErrors = false;
+            
+            inputs.forEach(input => {
+                const formGroup = input.parentElement;
+                const value = input.value.trim();
+                
+                if (input.required && !value) {
+                    formGroup.classList.add('has-error');
+                    hasErrors = true;
+                } else if (input.type === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        formGroup.classList.add('has-error');
+                        hasErrors = true;
+                    }
+                } else {
+                    formGroup.classList.remove('has-error');
+                }
+            });
+
+            if (hasErrors) {
+                contactForm.classList.add('shake-animation');
+                setTimeout(() => {
+                    contactForm.classList.remove('shake-animation');
+                }, 400);
+                return;
+            }
+
+            const origBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<span>Sending...</span><i data-lucide="loader-2" class="spin-icon"></i>`;
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = origBtnText;
+                
+                successScreen.classList.add('success-active');
+                contactForm.style.opacity = '0';
+                contactForm.style.transform = 'scale(0.95)';
+                contactForm.style.pointerEvents = 'none';
+                
+                contactForm.reset();
+            }, 1500);
+        });
+    }
+
+    if (resetFormBtn) {
+        resetFormBtn.addEventListener('click', () => {
+            successScreen.classList.remove('success-active');
+            contactForm.style.opacity = '1';
+            contactForm.style.transform = 'scale(1)';
+            contactForm.style.pointerEvents = 'auto';
+        });
+    }
+});

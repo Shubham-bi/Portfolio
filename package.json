@@ -1,0 +1,19 @@
+{
+  "name": "shubham-qa-portfolio",
+  "version": "1.0.0",
+  "description": "Premium QA Portfolio website for Shubham",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node build.js"
+  },
+  "keywords": [
+    "qa",
+    "portfolio",
+    "playwright",
+    "testing"
+  ],
+  "author": "Shubham",
+  "license": "ISC"
+}

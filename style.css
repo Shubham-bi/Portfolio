@@ -2030,6 +2030,31 @@ body.light-theme .form-input {
     color: var(--text-secondary);
 }
 
+.footer-actions-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.admin-lock-btn {
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-lock-btn:hover {
+    color: var(--accent-emerald);
+    transform: scale(1.1);
+}
+
+.admin-lock-btn i {
+    width: 18px;
+    height: 18px;
+}
+
 .back-to-top {
     display: inline-flex;
     align-items: center;
@@ -2059,5 +2084,267 @@ body.light-theme .form-input {
     .footer-container {
         flex-direction: column;
         text-align: center;
+        gap: 16px;
     }
 }
+
+/* -------------------------------------------------------------
+ * ADMIN STYLING SPECIFICS (MODALS & EDIT DOCK)
+ * ------------------------------------------------------------- */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(3, 7, 18, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+}
+
+.admin-modal-overlay.modal-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.admin-modal {
+    width: 90%;
+    max-width: 440px;
+    position: relative;
+    padding: 40px;
+    transform: scale(0.95);
+    transition: transform var(--transition-normal);
+}
+
+.admin-modal-overlay.modal-active .admin-modal {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+.modal-close-btn i {
+    width: 20px;
+    height: 20px;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+}
+
+.modal-title i {
+    width: 24px;
+    height: 24px;
+}
+
+.admin-error-msg {
+    color: #ef4444;
+    font-size: 13px;
+    font-weight: 600;
+    display: none;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.admin-error-msg.error-active {
+    display: block;
+}
+
+/* Bottom Control Dock */
+.editor-control-bar {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: rgba(10, 15, 36, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 16px 24px;
+    z-index: 1500;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 20px var(--accent-glow);
+    transition: bottom var(--transition-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body.light-theme .editor-control-bar {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 20px 50px rgba(15,23,42,0.1), 0 0 15px var(--accent-glow);
+}
+
+body.editing-active .editor-control-bar {
+    bottom: 30px;
+}
+
+.control-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .control-bar-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+}
+
+.control-bar-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.control-bar-info .indicator-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-emerald);
+    border-radius: 50%;
+}
+
+.control-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.control-bar-actions .btn {
+    gap: 6px;
+}
+
+.control-bar-actions i {
+    width: 14px;
+    height: 14px;
+}
+
+/* WYSIWYG outlines */
+[data-edit-key] {
+    transition: outline var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+body.editing-active [data-edit-key] {
+    outline: 1px dashed rgba(16, 185, 129, 0.4);
+    border-radius: 4px;
+    padding: 2px 4px;
+    cursor: text;
+}
+
+body.editing-active [data-edit-key]:hover {
+    outline: 1px dashed var(--accent-emerald);
+    background: rgba(16, 185, 129, 0.04);
+}
+
+body.editing-active [data-edit-key]:focus {
+    outline: 2px solid var(--accent-emerald);
+    background: rgba(16, 185, 129, 0.08);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Custom list styles for detailed resume representation */
+.about-summary-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.about-summary-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.about-summary-list li i {
+    width: 18px;
+    height: 18px;
+    color: var(--accent-emerald);
+    flex-shrink: 0;
+    margin-top: 3px;
+    filter: drop-shadow(0 0 3px var(--accent-glow));
+}
+
+.timeline-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.timeline-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.timeline-bullets li i {
+    width: 16px;
+    height: 16px;
+    color: var(--accent-emerald);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.project-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.project-bullets li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.project-bullets li i {
+    width: 14px;
+    height: 14px;
+    color: var(--accent-emerald);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+

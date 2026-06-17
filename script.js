@@ -2,9 +2,191 @@ document.addEventListener('DOMContentLoaded', () => {
     // -------------------------------------------------------------
     // INITIALIZE LUCIDE ICONS
     // -------------------------------------------------------------
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
+    const initIcons = () => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    };
+    initIcons();
+
+    // -------------------------------------------------------------
+    // DATABASE-FREE VISUAL EDITOR (ADMIN PORTAL)
+    // -------------------------------------------------------------
+    const adminLockBtn = document.getElementById('btn-admin-login');
+    const loginModal = document.getElementById('admin-login-modal');
+    const closeLoginModalBtn = document.getElementById('btn-close-login-modal');
+    const loginForm = document.getElementById('admin-login-form');
+    const loginErrorMsg = document.getElementById('admin-login-error');
+    
+    const editorDashboard = document.getElementById('editor-dashboard');
+    const saveBtn = document.getElementById('editor-save-btn');
+    const exportBtn = document.getElementById('editor-export-btn');
+    const resetBtn = document.getElementById('editor-reset-btn');
+    const logoutBtn = document.getElementById('editor-logout-btn');
+
+    // Load persisted edits from LocalStorage
+    const loadEditedContent = () => {
+        const savedData = localStorage.getItem('portfolio-edited-data');
+        if (savedData) {
+            try {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const el = document.querySelector(`[data-edit-key="${key}"]`);
+                    if (el) {
+                        el.innerText = data[key];
+                    }
+                });
+            } catch (e) {
+                console.error("Failed to parse loaded portfolio-edited-data", e);
+            }
+        }
+    };
+    loadEditedContent(); // Execute immediately on load
+
+    // Enter visual editing mode
+    const enterEditorMode = () => {
+        document.body.classList.add('editing-active');
+        const editableElements = document.querySelectorAll('[data-edit-key]');
+        editableElements.forEach(el => {
+            el.setAttribute('contenteditable', 'true');
+        });
+        sessionStorage.setItem('admin-logged-in', 'true');
+    };
+
+    // Exit visual editing mode
+    const exitEditorMode = () => {
+        document.body.classList.remove('editing-active');
+        const editableElements = document.querySelectorAll('[data-edit-key]');
+        editableElements.forEach(el => {
+            el.removeAttribute('contenteditable');
+        });
+        sessionStorage.removeItem('admin-logged-in');
+    };
+
+    // Check session persistence
+    if (sessionStorage.getItem('admin-logged-in') === 'true') {
+        enterEditorMode();
     }
+
+    // Modal Triggers
+    if (adminLockBtn) {
+        adminLockBtn.addEventListener('click', () => {
+            if (document.body.classList.contains('editing-active')) {
+                // If already logged in, clicking the lock exits editor
+                exitEditorMode();
+            } else {
+                loginModal.classList.add('modal-active');
+                loginErrorMsg.classList.remove('error-active');
+                loginForm.reset();
+            }
+        });
+    }
+
+    if (closeLoginModalBtn) {
+        closeLoginModalBtn.addEventListener('click', () => {
+            loginModal.classList.remove('modal-active');
+        });
+    }
+
+    // Modal Close on Outer Overlay Click
+    if (loginModal) {
+        loginModal.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('modal-active');
+            }
+        });
+    }
+
+    // Admin Credentials Authentication
+    if (loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const usernameInput = document.getElementById('admin-username').value.trim();
+            const passwordInput = document.getElementById('admin-password').value.trim();
+
+            // Hardcoded Verification (No DB)
+            if (usernameInput === 'admin' && passwordInput === 'shubham-qa-editor') {
+                loginModal.classList.remove('modal-active');
+                enterEditorMode();
+            } else {
+                loginErrorMsg.classList.add('error-active');
+                loginForm.classList.add('shake-animation');
+                setTimeout(() => {
+                    loginForm.classList.remove('shake-animation');
+                }, 400);
+            }
+        });
+    }
+
+    // Action: Save Changes to LocalStorage
+    if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+            const dataObj = {};
+            const editableElements = document.querySelectorAll('[data-edit-key]');
+            
+            editableElements.forEach(el => {
+                const key = el.getAttribute('data-edit-key');
+                dataObj[key] = el.innerText.trim();
+            });
+
+            localStorage.setItem('portfolio-edited-data', JSON.stringify(dataObj));
+
+            // Save Visual Feedback
+            const origText = saveBtn.innerHTML;
+            saveBtn.innerHTML = `<i data-lucide="check"></i> <span>Saved!</span>`;
+            initIcons();
+            saveBtn.disabled = true;
+
+            setTimeout(() => {
+                saveBtn.innerHTML = origText;
+                initIcons();
+                saveBtn.disabled = false;
+            }, 2000);
+        });
+    }
+
+    // Action: Export config.json file
+    if (exportBtn) {
+        exportBtn.addEventListener('click', () => {
+            const dataObj = {};
+            const editableElements = document.querySelectorAll('[data-edit-key]');
+            
+            editableElements.forEach(el => {
+                const key = el.getAttribute('data-edit-key');
+                dataObj[key] = el.innerText.trim();
+            });
+
+            const jsonString = JSON.stringify(dataObj, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'portfolio-config.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+    }
+
+    // Action: Reset defaults (Clear LocalStorage)
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if (confirm("Are you sure you want to revert all changes to the site's default template? This cannot be undone.")) {
+                localStorage.removeItem('portfolio-edited-data');
+                window.location.reload();
+            }
+        });
+    }
+
+    // Action: Logout / Exit Editor
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            exitEditorMode();
+        });
+    }
+
 
     // -------------------------------------------------------------
     // CUSTOM CURSOR
@@ -41,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         animateRing();
 
-        const interactiveSelectors = 'a, button, input, textarea, .skill-tab-btn, .filter-btn, .lab-tab-btn, .bug-card, .project-card';
+        const interactiveSelectors = 'a, button, input, textarea, .skill-tab-btn, .filter-btn, .lab-tab-btn, .bug-card, .project-card, [data-edit-key]';
         const addHoverClass = () => document.body.classList.add('cursor-hover');
         const removeHoverClass = () => document.body.classList.remove('cursor-hover');
 
@@ -239,7 +421,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     skillTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Remove active classes
             skillTabs.forEach(t => t.classList.remove('active'));
             skillPanes.forEach(p => p.classList.remove('active'));
 
@@ -316,14 +497,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     bugCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            // Close other bug cards
+            // Do not expand/collapse if visual editor is active
+            if (document.body.classList.contains('editing-active')) {
+                return;
+            }
+
             bugCards.forEach(c => {
                 if (c !== card) {
                     c.classList.remove('expanded');
                 }
             });
 
-            // Toggle current card
             card.classList.toggle('expanded');
         });
     });
@@ -408,13 +592,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const origBtnText = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<span>Sending...</span><i data-lucide="loader-2" class="spin-icon"></i>`;
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            initIcons();
 
             setTimeout(() => {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = origBtnText;
+                initIcons();
                 
                 successScreen.classList.add('success-active');
                 contactForm.style.opacity = '0';

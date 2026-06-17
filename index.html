@@ -141,7 +141,7 @@
                         <p class="font-jakarta" data-edit-key="about-bio-1">
                             QA Automation Engineer with 4 years of experience in manual and automation testing of web-based enterprise applications.
                         </p>
-                        <ul class="about-summary-list font-jakarta text-secondary">
+                        <ul class="about-summary-list font-jakarta text-secondary" id="about-summary-list-container">
                             <li><i data-lucide="check-circle-2" class="summary-icon"></i> <span><strong>Automation Frameworks:</strong> Hands-on expertise in Playwright (TypeScript) and Selenium WebDriver (Java) using POM architecture.</span></li>
                             <li><i data-lucide="check-circle-2" class="summary-icon"></i> <span><strong>Testing Domain:</strong> Functional, Regression, API, Database, SIT, UAT, and Production Validation.</span></li>
                             <li><i data-lucide="check-circle-2" class="summary-icon"></i> <span><strong>CI/CD &amp; Monitoring:</strong> Integrated automated test runs with GitHub Actions and Grafana metrics dashboards.</span></li>
@@ -167,7 +167,7 @@
                     <div class="about-skills reveal delay-2">
                         <div class="skills-sidebar glass-card">
                             <h3 class="skills-title font-outfit">Currently Learning</h3>
-                            <ul class="learning-list font-jakarta text-secondary">
+                            <ul class="learning-list font-jakarta text-secondary" id="learning-list-container">
                                 <li><i data-lucide="chevron-right"></i> Advanced Playwright Orchestration</li>
                                 <li><i data-lucide="chevron-right"></i> AI Observability &amp; Testing Agents</li>
                                 <li><i data-lucide="chevron-right"></i> Model Context Protocol (MCP) Servers</li>
@@ -378,7 +378,7 @@
                     <span class="section-subtitle font-outfit">My Roadmap</span>
                     <h2 class="section-title font-outfit">Professional Journey</h2>
                 </div>
-                <div class="timeline">
+                <div class="timeline" id="timeline-container">
                     <!-- Timeline Item 1 -->
                     <div class="timeline-item reveal">
                         <div class="timeline-dot"></div>
@@ -671,7 +671,7 @@ test.describe('ERP Authentication Tests', () => {
                     <span class="section-subtitle font-outfit">Credentials</span>
                     <h2 class="section-title font-outfit">Certifications</h2>
                 </div>
-                <div class="certifications-grid">
+                <div class="certifications-grid" id="certifications-container">
                     <!-- Cert 1 -->
                     <div class="cert-card glass-card reveal">
                         <div class="cert-icon-wrapper">
@@ -847,32 +847,202 @@ test.describe('ERP Authentication Tests', () => {
             </form>
         </div>
     </div>
+    <!-- Admin Dashboard Overlay (Full-screen) -->
+    <div class="admin-dashboard-overlay" id="admin-dashboard">
+        <div class="admin-dashboard-window glass-card">
+            <!-- Header -->
+            <header class="admin-dashboard-header">
+                <h2 class="font-outfit"><i data-lucide="layout-dashboard" class="neon-emerald"></i> Admin Control Center</h2>
+                <div class="header-actions">
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-import-config" title="Import from a JSON config file">
+                        <i data-lucide="upload"></i> <span>Import Config</span>
+                    </button>
+                    <input type="file" id="input-import-file" accept=".json" style="display: none;">
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-export-config" title="Export current config as a JSON file">
+                        <i data-lucide="download"></i> <span>Export Config</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="btn-reset-config" title="Reset all details to default template">
+                        <i data-lucide="rotate-ccw"></i> <span>Reset Defaults</span>
+                    </button>
+                    <button type="button" class="modal-close-btn" id="btn-close-dashboard" aria-label="Close dashboard">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+            </header>
 
-    <!-- Floating Editor Control Bar -->
-    <div class="editor-control-bar" id="editor-dashboard">
-        <div class="control-bar-container">
-            <div class="control-bar-info font-outfit">
-                <span class="indicator-dot pulse-dot"></span>
-                <span>Visual Editing Mode Active</span>
+            <!-- Dashboard Body (Sidebar + Form Panels) -->
+            <div class="admin-dashboard-body">
+                <aside class="admin-dashboard-sidebar">
+                    <button type="button" class="sidebar-tab-btn active font-outfit" data-form-tab="tab-general"><i data-lucide="user"></i> General &amp; Socials</button>
+                    <button type="button" class="sidebar-tab-btn font-outfit" data-form-tab="tab-about"><i data-lucide="info"></i> About &amp; Stats</button>
+                    <button type="button" class="sidebar-tab-btn font-outfit" data-form-tab="tab-skills"><i data-lucide="briefcase"></i> Skills Matrix</button>
+                    <button type="button" class="sidebar-tab-btn font-outfit" data-form-tab="tab-journey"><i data-lucide="git-branch"></i> Journey &amp; Ed</button>
+                    <button type="button" class="sidebar-tab-btn font-outfit" data-form-tab="tab-projects"><i data-lucide="folder-git-2"></i> Projects Showcase</button>
+                    <button type="button" class="sidebar-tab-btn font-outfit" data-form-tab="tab-certs"><i data-lucide="award"></i> Certifications</button>
+                </aside>
+
+                <main class="admin-dashboard-content font-jakarta">
+                    <form id="admin-config-form">
+                        <!-- Panel: General -->
+                        <div class="admin-form-panel active" id="form-tab-general">
+                            <h3 class="font-outfit panel-title">General Info &amp; Hero Section</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="inp-hero-badge">Hero Badge</label>
+                                    <input type="text" id="inp-hero-badge" class="admin-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-hero-title-prefix">Title Prefix</label>
+                                    <input type="text" id="inp-hero-title-prefix" class="admin-input">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inp-hero-desc">Hero Description</label>
+                                <textarea id="inp-hero-desc" class="admin-textarea"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Typewriter Phrases (One per line)</label>
+                                <textarea id="inp-hero-phrases" class="admin-textarea" placeholder="e.g. Playwright Automation&#10;RAG &amp; Agentic AI Testing"></textarea>
+                            </div>
+                            <h3 class="font-outfit panel-title mt-4">Social Networks &amp; Contacts</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="inp-social-github">GitHub URL</label>
+                                    <input type="url" id="inp-social-github" class="admin-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-social-linkedin">LinkedIn URL</label>
+                                    <input type="url" id="inp-social-linkedin" class="admin-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-social-email">Contact Email</label>
+                                    <input type="email" id="inp-social-email" class="admin-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-contact-phone">Contact Phone</label>
+                                    <input type="text" id="inp-contact-phone" class="admin-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-contact-location">Location Address</label>
+                                    <input type="text" id="inp-contact-location" class="admin-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel: About & Stats -->
+                        <div class="admin-form-panel" id="form-tab-about">
+                            <h3 class="font-outfit panel-title">About Me</h3>
+                            <div class="form-group">
+                                <label for="inp-about-title">Section Title</label>
+                                <input type="text" id="inp-about-title" class="admin-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="inp-about-bio-highlight">Bio Quote / Highlight</label>
+                                <textarea id="inp-about-bio-highlight" class="admin-textarea"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="inp-about-bio-text">Bio Core Text</label>
+                                <textarea id="inp-about-bio-text" class="admin-textarea"></textarea>
+                            </div>
+                            <h3 class="font-outfit panel-title mt-4">Summary Points</h3>
+                            <div class="form-group">
+                                <label>Summary Bullet Points (One per line, HTML allowed)</label>
+                                <textarea id="inp-about-summary-points" class="admin-textarea" style="height: 120px;"></textarea>
+                            </div>
+                            <h3 class="font-outfit panel-title mt-4">Stats Indicators</h3>
+                            <div class="form-grid-three">
+                                <div class="form-group">
+                                    <label for="inp-stats-years">Years of Experience</label>
+                                    <input type="number" id="inp-stats-years" class="admin-input" min="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-stats-projects">Test Suites Run</label>
+                                    <input type="number" id="inp-stats-projects" class="admin-input" min="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inp-stats-coverage">Target Coverage (%)</label>
+                                    <input type="number" id="inp-stats-coverage" class="admin-input" min="0" max="100">
+                                </div>
+                            </div>
+                            <h3 class="font-outfit panel-title mt-4">Currently Learning List</h3>
+                            <div class="form-group">
+                                <label>Items (One per line)</label>
+                                <textarea id="inp-about-learning" class="admin-textarea" style="height: 120px;"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Skills Matrix -->
+                        <div class="admin-form-panel" id="form-tab-skills">
+                            <h3 class="font-outfit panel-title">Skills Matrix</h3>
+                            <p class="panel-subtitle">Manage skills categorised under each matrix tab.</p>
+                            
+                            <div class="form-group">
+                                <label for="sel-skills-category">Select Category to Edit</label>
+                                <select id="sel-skills-category" class="admin-select">
+                                    <option value="automation">Automation &amp; Tools</option>
+                                    <option value="ai-gen">AI &amp; GenAI Tools</option>
+                                    <option value="api-db">API &amp; Database</option>
+                                    <option value="manual">Testing Expertise</option>
+                                    <option value="mgmt-platforms">Management &amp; Platforms</option>
+                                </select>
+                            </div>
+
+                            <div class="skills-editor-list-container">
+                                <div id="skills-items-editor"></div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-3" id="btn-add-skill-item">
+                                    <i data-lucide="plus"></i> <span>Add Skill Card</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Journey -->
+                        <div class="admin-form-panel" id="form-tab-journey">
+                            <h3 class="font-outfit panel-title">Professional Journey &amp; Education</h3>
+                            <div class="timeline-editor-list-container">
+                                <div id="timeline-items-editor"></div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-3" id="btn-add-timeline-item">
+                                    <i data-lucide="plus"></i> <span>Add Timeline Event</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Projects -->
+                        <div class="admin-form-panel" id="form-tab-projects">
+                            <h3 class="font-outfit panel-title">Projects Showcase</h3>
+                            <div class="projects-editor-list-container">
+                                <div id="projects-items-editor"></div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-3" id="btn-add-project-item">
+                                    <i data-lucide="plus"></i> <span>Add Project Card</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Certifications -->
+                        <div class="admin-form-panel" id="form-tab-certs">
+                            <h3 class="font-outfit panel-title">Certifications &amp; Credentials</h3>
+                            <div class="certs-editor-list-container">
+                                <div id="certs-items-editor"></div>
+                                <button type="button" class="btn btn-secondary btn-sm mt-3" id="btn-add-cert-item">
+                                    <i data-lucide="plus"></i> <span>Add Certificate Card</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </main>
             </div>
-            <div class="control-bar-actions">
-                <button class="btn btn-primary btn-sm" id="editor-save-btn">
-                    <i data-lucide="save"></i>
-                    <span>Save Changes</span>
-                </button>
-                <button class="btn btn-secondary btn-sm" id="editor-export-btn">
-                    <i data-lucide="download"></i>
-                    <span>Export config.json</span>
-                </button>
-                <button class="btn btn-secondary btn-sm" id="editor-reset-btn">
-                    <i data-lucide="rotate-ccw"></i>
-                    <span>Reset Defaults</span>
-                </button>
-                <button class="btn btn-secondary btn-sm" id="editor-logout-btn">
-                    <i data-lucide="log-out"></i>
-                    <span>Exit Editor</span>
-                </button>
-            </div>
+
+            <!-- Footer Dock -->
+            <footer class="admin-dashboard-footer">
+                <span class="status-indicator font-outfit"><span class="pulse-dot"></span> Authenticated Admin Portal</span>
+                <div class="footer-actions">
+                    <button type="button" class="btn btn-primary" id="btn-apply-config">
+                        <i data-lucide="check-circle-2"></i> <span>Apply &amp; Refresh Site</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="btn-cancel-dashboard">
+                        <span>Cancel</span>
+                    </button>
+                </div>
+            </footer>
         </div>
     </div>
 

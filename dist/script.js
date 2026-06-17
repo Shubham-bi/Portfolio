@@ -308,6 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailLink = contactSection.querySelector('a[href^="mailto:"]');
             const phoneLink = contactSection.querySelector('a[href^="tel:"]');
             const locationSpan = contactSection.querySelector('.info-item:nth-child(3) .info-text span:nth-child(2)');
+            const contactGithub = document.getElementById('contact-github');
+            const contactLinkedin = document.getElementById('contact-linkedin');
 
             if (emailLink && config.contact.email) {
                 emailLink.href = `mailto:${config.contact.email}`;
@@ -319,6 +321,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (locationSpan && config.contact.location) {
                 locationSpan.innerText = config.contact.location;
+            }
+            if (contactGithub && config.hero.github) {
+                contactGithub.href = config.hero.github;
+            }
+            if (contactLinkedin && config.hero.linkedin) {
+                contactLinkedin.href = config.hero.linkedin;
             }
         }
     };

@@ -51,7 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
             el.setAttribute('contenteditable', 'true');
         });
         sessionStorage.setItem('admin-logged-in', 'true');
+
+        // Smoothly scroll to the top of the page (hero section) to show the edit outlines
+        setTimeout(() => {
+            const heroSection = document.getElementById('hero');
+            if (heroSection) {
+                heroSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }, 300);
     };
+
 
     // Exit visual editing mode
     const exitEditorMode = () => {

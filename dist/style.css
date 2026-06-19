@@ -739,7 +739,8 @@ body.light-theme .moon-icon {
     transform: translateY(-3px) scale(1.05);
 }
 
-.social-icon i {
+.social-icon i,
+.social-icon svg {
     width: 18px;
     height: 18px;
 }
@@ -1838,7 +1839,8 @@ body.light-theme .floating-tech-card {
     transform: translateY(-3px) scale(1.05);
 }
 
-.social-links-row i {
+.social-links-row i,
+.social-links-row svg {
     width: 16px;
     height: 16px;
 }

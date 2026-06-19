@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             email: "shubhamkharche38@gmail.com"
         },
         about: {
+            resumeUrl: "assets/ShubhamKharche_QA.pdf",
             title: "QA Automation Engineer with 4 Years of Web Enterprise Testing",
             bioHighlight: "Quality is not only about finding defects. It is about validating business requirements, protecting user trust, ensuring data integrity, and verifying that both traditional software and AI systems behave reliably.",
             bioText: "QA Automation Engineer with 4 years of experience in manual and automation testing of web-based enterprise applications.",
@@ -202,6 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (yearsEl) yearsEl.innerText = `${config.about.years}+`;
         if (projectsEl) projectsEl.innerText = `${config.about.projects}+`;
         if (coverageEl) coverageEl.innerText = `${config.about.coverage}%`;
+
+        // Update resume download button href & attributes
+        const downloadBtn = document.getElementById('btn-download-resume');
+        if (downloadBtn) {
+            downloadBtn.href = config.about.resumeUrl || 'assets/ShubhamKharche_QA.pdf';
+            downloadBtn.setAttribute('download', 'ShubhamKharche_QA.pdf');
+        }
     };
 
     const renderSkills = (config) => {
@@ -456,6 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // About
         document.getElementById('inp-about-title').value = activeConfig.about.title || '';
+        document.getElementById('inp-about-resume').value = activeConfig.about.resumeUrl || '';
         document.getElementById('inp-about-bio-highlight').value = activeConfig.about.bioHighlight || '';
         document.getElementById('inp-about-bio-text').value = activeConfig.about.bioText || '';
         document.getElementById('inp-about-summary-points').value = (activeConfig.about.summaryPoints || []).join('\n');
@@ -486,6 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // About
         activeConfig.about.title = document.getElementById('inp-about-title').value.trim();
+        activeConfig.about.resumeUrl = document.getElementById('inp-about-resume').value.trim();
         activeConfig.about.bioHighlight = document.getElementById('inp-about-bio-highlight').value.trim();
         activeConfig.about.bioText = document.getElementById('inp-about-bio-text').value.trim();
         activeConfig.about.summaryPoints = document.getElementById('inp-about-summary-points').value.split('\n').map(p => p.trim()).filter(p => p);
